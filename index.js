@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 // const p_argv = require('electron').remote.process.argv
 const fs = require('fs')
+const root = process.env.APPDATA + "/aimwarell"
 
 const createWindow = () => {
 
@@ -21,13 +22,16 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
-	if (process.argv.length > 1) {
-		for (i = 1; i < process.argv.length; i++) {
-			let argv = process.argv[i]
-			if (fs.existsSync(argv) && argv.search(/.*\\.exe/)) {
-				console.log('Do something with: ', argv)
-			}
-		}
+	if (!fs.existsSync(root)) {
+		fs.mkdirSync(root, { recursive: true });
 	}
+	// if (process.argv.length > 1) {
+	// 	for (i = 1; i < process.argv.length; i++) {
+	// 		let argv = process.argv[i]
+	// 		if (fs.existsSync(argv) && argv.search(/.*\\.exe/)) {
+	// 			console.log('Do something with: ', argv)
+	// 		}
+	// 	}
+	// }
 	createWindow()
 })
