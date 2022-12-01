@@ -1,0 +1,27 @@
+{
+  "name": "aimware-loader-loader",
+  "version": "1.0.0",
+  "description": "Aimware loader loader :D",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMXNOOBX/aimware-loader-loader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IMXNOOBX/aimware-loader-loader/issues"
+  },
+  "homepage": "https://github.com/IMXNOOBX/aimware-loader-loader#readme",
+  "devDependencies": {
+    "electron": "^22.0.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
