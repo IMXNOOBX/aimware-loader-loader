@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/script.js" defer></script>
+	<title>Aimware | Setup</title>
+</head>
+<body>
+	<div class="container">
+		<h2>Select Loader</h2>
+		<label for="add-btn">
+			<img src="../assets/icons8-file-explorer-48.png" alt="add">
+		  </label>
+		<input id="add-btn" type="file" style="display: none;"/>
+	</div>
+	<div class="coolanim">
+		<a href="https://github.com/IMXNOOBX/aimware-loader-loader">
+			<img src="../assets/logo.png" alt="logo">
+		</a>
+	</div>
+</body>
+<style> 
+	html, body {
+		height: 100%;
+		margin: 0px;
+		background-color: RGB(15, 16, 16);
+		font-family: 'Poppins', sans-serif;
+	}
+
+	.container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+
+		background-color: RGB(25, 26, 26);
+
+		width: 70%;
+		padding: 20px;
+
+		color: white;
+		text-align: center;
+
+		border-radius: 15px;
+	}
+
+	.container img {	
+		filter: brightness(0) invert(1);
+		cursor: pointer;
+	}
+
+	.coolanim {
+		position: absolute;
+		top: 83%;
+		left: 50%;
+		-ms-transform: translate(-50%);
+		transform: translate(-50%);
+	}
+
+	.coolanim img {
+		height: 25px;
+		transform: rotate(-27.5deg); 
+		animation-name: spin;
+		animation-duration: 10s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+	@keyframes spin { 
+        from { 
+            transform: rotate(0deg); 
+        } to { 
+            transform: rotate(360deg); 
+        }
+    }
+</style>
+</html>
