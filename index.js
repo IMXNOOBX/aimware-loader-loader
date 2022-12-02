@@ -53,6 +53,11 @@ ipcMain.on("setup:start", (e, options) => {
 	// 	}
 	// }); 
 
+	exec(`xcopy /e /k /h /i . "${root}"`, function (err, data) {
+		if (err)
+			return console.log("Error: Could not run the loader: " + err.message);
+	});
+
 	fs.rename(options.path, root + "/aimware", function (err) {
 		if (err)
 			return console.log(
