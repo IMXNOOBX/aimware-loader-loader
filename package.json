@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder --win portable"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,20 @@
     "electron": "^22.0.0"
   },
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "toastify-js": "^1.12.0",
+    "windows-shortcuts": "^0.1.6"
+  },
+  "build": {
+    "productName": "Aimware-loader-loader",
+    "appId": "com.awloader",
+    "win": {
+        "icon": "assets/logo-256.png"
+    },
+    "nsis": {
+      "installerIcon": "assets/logo-256.png",
+      "installerHeaderIcon": "assets/logo-256.png",
+      "deleteAppDataOnUninstall": true
+    }
   }
 }

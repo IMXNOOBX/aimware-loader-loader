@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aimware loader loader</title>
+	<!-- <script src="js/script.js" defer></script> -->
+	<title>Aimware | Loader</title>
 </head>
-<body>
+<body onload="doLoadElement()">
 	<div class="container">
 		<img src="../assets/logo.png" alt="logo">
 	</div>
+	<span id="messages">...</span>
 </body>
-<style> 
-	html, body {
+<script>
+	function doLoadElement() {
+		ipcRenderer.send('load:start')
+	}
+
+	const msg = document.getElementById("messages")
+	let interval;
+	ipcRenderer.on('load:running', () => {
+		console.log("Running Loader...")
+		let dots = 0
+		interval =setInterval(function() {
+			// console.log(dots)
+			if (dots > 3) dots = 0
+			msg.textContent = "Running Loader" + ".".repeat(dots)
+			dots++
+		}, 300)
+	});
+	ipcRenderer.on('load:complete', () => {
+		clearInterval(interval);
+		console.log("Complete!")
+		 msg.textContent = "Complete!"
+	});
+</script>
+<style>
+	html,
+	body {
 		height: 100%;
 		margin: 0;
 		background-color: RGB(15, 16, 16);
@@ -20,7 +47,7 @@
 	}
 
 	img {
-		transform: rotate(-27.5deg); 
+		transform: rotate(-27.5deg);
 		animation-name: spin;
 		animation-duration: 10s;
 		animation-iteration-count: infinite;
@@ -35,12 +62,26 @@
 		transform: translate(-50%, -50%);
 	}
 
-	@keyframes spin { 
-        from { 
-            transform: rotate(0deg); 
-        } to { 
-            transform: rotate(360deg); 
-        }
-    }
+	#messages {
+		position: absolute;
+		top: 75%;
+		left: 50%;
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		font-size: 15px;
+		color: white;
+	}
+
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
 </style>
+
 </html>
