@@ -1,6 +1,6 @@
 {
   "name": "aimware-loader-loader",
-  "version": "1.0.0",
+  "version": "1.2.5",
   "description": "Aimware loader loader so you dont have to download it every time!",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.0",
+    "node-notifier": "^10.0.1",
     "toastify-js": "^1.12.0",
     "windows-shortcuts": "^0.1.6"
   },
