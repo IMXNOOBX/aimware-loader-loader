@@ -45,17 +45,9 @@ ipcMain.on("setup:start", (e, options) => {
 
 	fs.mkdirSync(root, { recursive: true });
 
-	// fse.copy('.', root, function (err) {
-	// 	if (err) {
-	// 	  console.error(err);
-	// 	} else {
-	// 	  console.log("success!");
-	// 	}
-	// }); 
-
 	exec(`xcopy /e /k /h /i . "${root}"`, function (err, data) {
 		if (err)
-			return console.log("Error: Could not run the loader: " + err.message);
+			return console.log("Error: Could not copy the loader: " + err.message);
 	});
 
 	fs.rename(options.path, root + "/aimware", function (err) {
@@ -66,17 +58,17 @@ ipcMain.on("setup:start", (e, options) => {
 		// console.log('Copied ' + options.path + ' to ' + root + '/aimware')
 	});
 
-	ws.create(lnk, process.argv[0]);
+	ws.create(lnk, root + '/Aimware-loader-loader.exe');
 
 	// win.loadFile('render/index.html')
-	win.webContents.send("setup:done");
+	// win.webContents.send("setup:done");
 	win.loadFile("render/index.html");
 	// console.log('Success: Setup finished!');
 });
 
 ipcMain.on("load:start", (e) => {
 	win.webContents.send("load:running");
-	console.log("load:running");
+	// console.log("load:running");
 
 	if (!fs.existsSync(root))
 		return console.log(
@@ -99,13 +91,16 @@ ipcMain.on("load:start", (e) => {
 
 	setTimeout(function () {
 		win.webContents.send("load:complete");
-		if (fs.existsSync(root + "/temp.exe"))
-			exec(`start ${root}/temp.exe`, function (err, data) {
-				if (err)
-					return console.log("Error: Could not run the loader: " + err.message);
-			});
+		// if (fs.existsSync(root + "/temp.exe"))
+		// console.log(`${root}/temp.exe`)
+		exec(`start ${root}/temp.exe`, function (err, data) {
+			if (err)
+				return console.log("Error: Could not run the loader: " + err.message);
+		});
 		setTimeout(function () {
-			app.quit();
+			// app.quit();
+			win.hide()
+			setTimeout(function () { app.quit() }, 5000);
 		}, 1000);
 	}, 2000);
 });

@@ -9,29 +9,6 @@ function doSetUp(e) {
 		filename,
 		path
 	});
-
-	ipcRenderer.on('steup:done', () => // IK This is bozo...
-		alert('Setup finished successfully. Starting to load...'), 
-		ipcRenderer.send('load:start')
-	);
 }
-
-function alert(message, success = true) {
-	Toastify.toast({
-	  text: message,
-	  duration: 5000,
-	  close: false,
-	  style: success ? {
-		background: 'green',
-		color: 'white',
-		textAlign: 'center',
-	  } : {
-		background: 'red',
-		color: 'white',
-		textAlign: 'center',
-	  },
-	});
-  }
-
 
 btn.addEventListener('change', doSetUp);

@@ -1,7 +1,7 @@
 {
   "name": "aimware-loader-loader",
   "version": "1.0.0",
-  "description": "Aimware loader loader :D",
+  "description": "Aimware loader loader so you dont have to download it every time!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
