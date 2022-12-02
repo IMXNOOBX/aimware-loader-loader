@@ -3,21 +3,23 @@ var { exec } = require("child_process");
 const ws = require("windows-shortcuts");
 // const { setTimeout } = require("timers/promises");
 const path = require("path");
+var fse = require('fs-extra');
 const fs = require("fs");
 const { Console } = require("console");
 
 const root = process.env.APPDATA + "/aimware-loader";
 const lnk = process.env.APPDATA + "/Microsoft/Windows/Start Menu/Programs/Aimware.lnk";
-const isDev = process.env.NODE_ENV !== "production";
-var first_run = false;
+// const isDev = process.env.NODE_ENV !== "production";
+const developer = false;
+var should_setup = false;
 var win;
 
 const createWindow = () => {
 	win = new BrowserWindow({
-		width: isDev ? 800 : 300,
+		width: developer ? 800 : 300,
 		height: 350,
 		transparent: true,
-		resizable: isDev,
+		resizable: developer,
 		hasShadow: false,
 		frame: false,
 		icon: "assets/logo.png",
@@ -28,10 +30,10 @@ const createWindow = () => {
 		},
 	});
 
-	if (isDev) win.webContents.openDevTools();
+	if (developer) win.webContents.openDevTools();
 
 	// win.setIgnoreMouseEvents(true)
-	if (first_run) win.loadFile("render/setup.html");
+	if (should_setup) win.loadFile("render/setup.html");
 	else win.loadFile("render/index.html");
 };
 
@@ -42,6 +44,14 @@ ipcMain.on("setup:start", (e, options) => {
 		return console.log("Error: File dosent exist any more!");
 
 	fs.mkdirSync(root, { recursive: true });
+
+	// fse.copy('.', root, function (err) {
+	// 	if (err) {
+	// 	  console.error(err);
+	// 	} else {
+	// 	  console.log("success!");
+	// 	}
+	// }); 
 
 	fs.rename(options.path, root + "/aimware", function (err) {
 		if (err)
@@ -111,7 +121,7 @@ app.whenReady().then(() => {
 	}
 
 	if (!fs.existsSync(root) || !fs.existsSync(root + "/aimware")) {
-		first_run = true;
+		should_setup = true;
 	}
 
 	createWindow();
