@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.0",
     "toastify-js": "^1.12.0",
     "windows-shortcuts": "^0.1.6"
   },
@@ -31,7 +32,7 @@
     "productName": "Aimware-loader-loader",
     "appId": "com.awloader",
     "win": {
-        "icon": "assets/logo-256.png"
+      "icon": "assets/logo-256.png"
     },
     "nsis": {
       "installerIcon": "assets/logo-256.png",
