@@ -13,6 +13,8 @@ Simple electron app to load the aimware loader cause im to lazy to download it e
 
 ## 🎯 Simple Usage
 
+> Tuturial: https://youtu.be/2ux3e3OwuhM
+
 ***Steps***
  > 1. Go to releases tab in this repository
  > 2. Click where it says "Click Here" to download the latest release
