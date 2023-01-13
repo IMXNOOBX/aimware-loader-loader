@@ -8,6 +8,7 @@ const fs = require("fs");
 
 const root = process.env.APPDATA + "/aimware-loader";
 const lnk = process.env.APPDATA + "/Microsoft/Windows/Start Menu/Programs/Aimware.lnk";
+const lnk_u = process.env.APPDATA + "/Microsoft/Windows/Start Menu/Programs/Aimware-uninstall.lnk";
 const developer = false; // set it manually
 var should_setup = false;
 var win;
@@ -39,7 +40,7 @@ function windowsNotify(title, message) {
 	notifier.notify({ 
 		title, 
 		message, 
-		icon: path.join(__dirname, 'assets/logo.png'), 
+		icon: path.join(root, 'assets/logo.png'), 
 		sound: false, 
 		timeout: 3,
 		appID: 'Aimware-loader-loader',
@@ -64,6 +65,7 @@ ipcMain.on("setup:start", (e, options) => {
 	});
 
 	ws.create(lnk, root + '/Aimware-loader-loader.exe');
+	ws.create(lnk_u, { target: root + '/Aimware-loader-loader.exe', args: '--uninstall' });
 
 	windowsNotify('Success!', `Set up done! Enjoy the loader!`)
 	win.loadFile("render/index.html");
@@ -88,7 +90,7 @@ ipcMain.on("load:start", (e) => {
 	setTimeout(function () {
 		win.webContents.send("load:complete");
 		if (fs.existsSync(root + "/temp.exe"))
-			exec(`start ${root}/temp.exe`, function (err, data) {
+			exec(`"${root}/temp.exe"`, function (err, data) {
 				if (err)
 					return windowsNotify('Error', `Could not run the loader: ${err.message}`) 
 			});
@@ -109,6 +111,7 @@ app.whenReady().then(() => {
 			if (argv == "-u" || argv == "--uninstall") {
 				if (fs.existsSync(root)) fs.rmSync(root, { recursive: true });
 				if (fs.existsSync(lnk)) fs.rmSync(lnk);
+				if (fs.existsSync(lnk_u)) fs.rmSync(lnk_u);
 
 				windowsNotify('Success!', `App successfully removed!`) 
 				return app.quit();
