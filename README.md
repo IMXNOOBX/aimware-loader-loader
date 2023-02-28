@@ -9,7 +9,7 @@
 
 </div>
 
-Simple electron app to load the aimware loader cause im to lazy to download it every time i need to run it :D 
+Simple electron app to load the aimware loader cause im to lazy to download it every time i need to run it :D. Aimware staff recommends not to store any copies as it might increase the detection, if the app receives more stars and rating i will make it safer and easier to download! 
 
 ## 🎯 Simple Usage
 
@@ -18,7 +18,7 @@ Simple electron app to load the aimware loader cause im to lazy to download it e
 ***Steps***
  > 1. Go to releases tab in this repository
  > 2. Click where it says "Click Here" to download the latest release
- > 3. Double click the aimware-loader-loader-<version>.exe
+ > 3. Double click the aimware-loader-loader-< version >.exe
  > 4. It will prompt you to select the aimware loader (it will ask you just the first time)
  > 5. Click the windows key and you should see a shortcut with the aimware icon and name
  > 6. Enjoy
